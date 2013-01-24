@@ -39,7 +39,6 @@ testflight.zip:
 	zip $@ haxelib.xml
 	zip $@ include.nmml
 	$(HAXELIB) test $@
-	rm $@
 
 # extracts object files for specific architectures
 i386 armv6 armv7:
