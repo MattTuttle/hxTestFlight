@@ -1,0 +1,7 @@
+<project name="testflight" url="http://www.testflightapp.com" license="MIT">
+	<user name="heardtheword"/>
+	<tag v="nme" />
+	<tag v="ios" />
+	<description>TestFlight API for NME</description>
+    <version name="1.0">See CHANGELOG.md</version>
+</project>
