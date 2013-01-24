@@ -13,7 +13,7 @@ class Example extends flash.display.Sprite
 
 	private function init()
 	{
-		TestFlight.takeOff("7adecb48-85c8-485a-86ef-4f56bdb45132");
+		TestFlight.takeOff("your-testflight-token");
 		TestFlight.passCheckpoint("check1");
 		TestFlight.remoteLog("Hello world");
 		TestFlight.submitFeedback("This is a comment about the app");

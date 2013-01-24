@@ -38,6 +38,7 @@ testflight.zip:
 	zip -r $@ ndll -x *.DS_Store
 	zip $@ haxelib.xml
 	zip $@ include.nmml
+	zip $@ CHANGELOG.md
 	$(HAXELIB) test $@
 
 # extracts object files for specific architectures

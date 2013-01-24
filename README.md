@@ -15,7 +15,7 @@ class Example
 	private function new()
 	{
 		// do this once at the beginning of your app
-		TestFlight.takeOff("7adecb48-85c8-485a-86ef-4f56bdb45132");
+		TestFlight.takeOff("your-testflight-token");
 
 		// use these methods to send data to TestFlight
 		TestFlight.passCheckpoint("check1");
