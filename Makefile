@@ -3,12 +3,12 @@ AR=ar
 LIBTOOL=libtool
 HAXELIB=haxelib
 HXCPP=$(HAXELIB) run hxcpp
-NME=$(HAXELIB) run nme
+OPENFL=$(HAXELIB) run openfl
 
 all: build examples
 
 examples: install
-	cd example; $(NME) test project.nmml ios -simulator
+	cd example; $(OPENFL) update project.xml ios
 
 build: iphonesim iphoneos iphoneos-v7
 
@@ -30,16 +30,17 @@ iphoneos-v7: armv7
 clean:
 	rm -rf project/lib project/obj
 	rm -f ndll/iPhone/*.a
+	rm testflight.zip
 
 install: testflight.zip
+	$(HAXELIB) local $<
 
 testflight.zip:
 	zip -r $@ com -x *.DS_Store
 	zip -r $@ ndll -x *.DS_Store
-	zip $@ haxelib.xml
-	zip $@ include.nmml
+	zip $@ haxelib.json
+	zip $@ include.xml
 	zip $@ CHANGELOG.md
-	$(HAXELIB) test $@
 
 # extracts object files for specific architectures
 i386 armv6 armv7:
