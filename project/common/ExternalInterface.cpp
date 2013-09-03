@@ -15,18 +15,11 @@ using namespace TF;
 
 #ifdef IPHONE
 
-void testflight_take_off(value token, value testing)
+void testflight_take_off(value token)
 {
-	take_off(val_string(token), val_bool(testing));
+	take_off(val_string(token));
 }
-DEFINE_PRIM (testflight_take_off, 2);
-
-
-void testflight_open_feedback_view()
-{
-	open_feedback_view();
-}
-DEFINE_PRIM (testflight_open_feedback_view, 0);
+DEFINE_PRIM (testflight_take_off, 1);
 
 
 void testflight_pass_checkpoint(value checkpoint)

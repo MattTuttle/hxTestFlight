@@ -1,0 +1,10 @@
+{
+	"name": "TestFlight",
+	"url" : "https://github.com/MattTuttle/nme-testflight",
+	"license": "MIT",
+	"tags": ["ios", "android"],
+	"description": "TestFlight SDK for iOS and Android",
+	"version": "1.0.1",
+	"releasenote": "See CHANGELOG.md",
+	"contributors": ["heardtheword"]
+}

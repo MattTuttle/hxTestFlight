@@ -1,6 +1,8 @@
 package com.testflightapp;
 
-#if cpp
+#if android
+import nme.JNI;
+#elseif cpp
 import cpp.Lib;
 #elseif neko
 import neko.Lib;
@@ -9,19 +11,16 @@ import neko.Lib;
 class TestFlight
 {
 
-	public static function takeOff(token:String, testing:Bool=false)
+	public static function takeOff(token:String)
 	{
-		take_off(token, testing);
+		take_off(token);
 	}
 
 	public static function submitFeedback(feedback:String)
 	{
+		#if !android
 		submit_feedback(feedback);
-	}
-
-	public static function openFeedbackView()
-	{
-		open_feedback_view();
+		#end
 	}
 
 	public static function remoteLog(value:String)
@@ -36,13 +35,24 @@ class TestFlight
 
 	public static function customInfo(key:String, value:Dynamic)
 	{
+		#if !android
 		custom_info(key, Std.string(value));
+		#end
 	}
 
-	private static var take_off = Lib.load("testflight", "testflight_take_off", 2);
-	private static var submit_feedback = Lib.load("testflight", "testflight_submit_feedback", 1);
-	private static var open_feedback_view = Lib.load("testflight", "testflight_open_feedback_view", 0);
-	private static var pass_checkpoint = Lib.load("testflight", "testflight_pass_checkpoint", 1);
-	private static var custom_info = Lib.load("testflight", "testflight_custom_info", 2);
-	private static var remote_log = Lib.load("testflight", "testflight_remote_log", 1);
+#if android
+
+    private static var take_off        = JNI.createStaticMethod("com/testflightapp/lib/TestFlight", "takeOff", "(Landroid/app/ApplicationLjava/lang/String)");
+    private static var pass_checkpoint = JNI.createStaticMethod("com/testflightapp/lib/TestFlight", "passCheckpoint", "(Ljava/lang/String)");
+    private static var remote_log      = JNI.createStaticMethod("com/testflightapp/lib/TestFlight", "log", "(Ljava/lang/String)");
+
+#else
+
+    private static var take_off        = Lib.load("testflight", "testflight_take_off", 1);
+    private static var submit_feedback = Lib.load("testflight", "testflight_submit_feedback", 1);
+    private static var pass_checkpoint = Lib.load("testflight", "testflight_pass_checkpoint", 1);
+    private static var custom_info     = Lib.load("testflight", "testflight_custom_info", 2);
+    private static var remote_log      = Lib.load("testflight", "testflight_remote_log", 1);
+
+#end
 }

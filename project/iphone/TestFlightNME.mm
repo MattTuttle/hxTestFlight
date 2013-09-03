@@ -5,23 +5,17 @@
 
 namespace TF
 {
-	void take_off(const char *token, bool testing)
+	void take_off(const char *token)
 	{
-		if (testing)
-		{
-			[TestFlight setDeviceIdentifier: [[UIDevice currentDevice] uniqueIdentifier]];
-		}
+		#if debug
+		[TestFlight setDeviceIdentifier: [[UIDevice currentDevice] uniqueIdentifier]];
+		#endif
 		[TestFlight takeOff:[NSString stringWithUTF8String:token]];
 	}
 
 	void pass_checkpoint(const char *checkpoint)
 	{
 		[TestFlight passCheckpoint:[NSString stringWithUTF8String:checkpoint]];
-	}
-
-	void open_feedback_view()
-	{
-		[TestFlight openFeedbackView];
 	}
 
 	void submit_feedback(const char *feedback)
