@@ -20,11 +20,10 @@ class Example
 		// use these methods to send data to TestFlight
 		TestFlight.passCheckpoint("check1");
 		TestFlight.remoteLog("Hello world");
+
+		// only works in iOS
 		TestFlight.submitFeedback("This is a comment about the app");
 		TestFlight.customInfo("foo", ["bar", 1]);
-
-		// you can also use TestFlight's default feedback view
-		TestFlight.openFeedbackView();
 	}
 
 }
