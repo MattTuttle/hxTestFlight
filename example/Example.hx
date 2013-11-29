@@ -13,11 +13,13 @@ class Example extends flash.display.Sprite
 
 	private function init()
 	{
-		TestFlight.takeOff("your-testflight-token");
+		TestFlight.takeOff("8fe0a99f-7101-4d81-868a-b90683d20468");
 		TestFlight.passCheckpoint("check1");
 		TestFlight.remoteLog("Hello world");
+#if !android
 		TestFlight.submitFeedback("This is a comment about the app");
 		TestFlight.customInfo("foo", ["bar", 1]);
+#end
 	}
 
 	private function onAddedToStage(e:Event)
