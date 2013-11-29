@@ -39,7 +39,7 @@
 	<set name="name_extra" value="-x86" if="simulator" unless="iphonesim" />
 
 	<target id="NDLL" output="${name_prefix}testflight${name_extra}" tool="linker" toolid="${ndll-tool}">
-		<outdir name="../ndll/${BINDIR}" />
+		<outdir name="../ndll_/${BINDIR}" />
 		<ext value=".ndll" unless="mobile"/>
 		<files id="iphone" if="iphone"/>
 		<files id="common"/>

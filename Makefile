@@ -14,29 +14,29 @@ build: iphonesim iphoneos-v7
 
 iphonesim: i386
 	cd project; $(HXCPP) Build.xml -Diphonesim
-	ar -q ndll/iPhone/libtestflight.$@.a $(LIBPATH)/$</*.o
-	ranlib ndll/iPhone/libtestflight.$@.a
+	ar -q ndll_/iPhone/libtestflight.$@.a $(LIBPATH)/$</*.o
+	ranlib ndll_/iPhone/libtestflight.$@.a
 
 iphoneos: armv6
 	cd project; $(HXCPP) Build.xml -Diphoneos
-	ar -q ndll/iPhone/libtestflight.$@.a $(LIBPATH)/$</*.o
-	ranlib ndll/iPhone/libtestflight.$@.a
+	ar -q ndll_/iPhone/libtestflight.$@.a $(LIBPATH)/$</*.o
+	ranlib ndll_/iPhone/libtestflight.$@.a
 
 iphoneos-v7: armv7
 	cd project; $(HXCPP) Build.xml -Diphoneos -DHXCPP_ARMV7
-	ar -q ndll/iPhone/libtestflight.$@.a $(LIBPATH)/$</*.o
-	ranlib ndll/iPhone/libtestflight.$@.a
+	ar -q ndll_/iPhone/libtestflight.$@.a $(LIBPATH)/$</*.o
+	ranlib ndll_/iPhone/libtestflight.$@.a
 
 clean:
 	rm -rf project/obj
-	rm -f ndll/iPhone/*.a testflight.zip
+	rm -f ndll_/iPhone/*.a testflight.zip
 
 install: testflight.zip
 	$(HAXELIB) local $<
 
 testflight.zip:
 	zip -r $@ com -x *.DS_Store
-	zip -r $@ ndll -x *.DS_Store
+	zip -r $@ ndll_ -x *.DS_Store
 	zip $@ lib/TestFlightLib.jar
 	zip $@ haxelib.json include.xml CHANGELOG.md
 

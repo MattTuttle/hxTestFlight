@@ -1,7 +1,7 @@
 package com.testflightapp;
 
 #if android
-import nme.JNI;
+import openfl.utils.JNI;
 #elseif cpp
 import cpp.Lib;
 #elseif neko
