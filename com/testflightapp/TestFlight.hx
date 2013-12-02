@@ -1,7 +1,7 @@
 package com.testflightapp;
 
 #if android
-import nme.JNI;
+import openfl.utils.JNI;
 #elseif cpp
 import cpp.Lib;
 #elseif neko
@@ -13,7 +13,13 @@ class TestFlight
 
 	public static function takeOff(token:String)
 	{
+		init();
+		
+		#if android
+		take_off(get_app(get_activity()), token);
+		#else
 		take_off(token);
+		#end
 	}
 
 	public static function submitFeedback(feedback:String)
@@ -39,20 +45,45 @@ class TestFlight
 		custom_info(key, Std.string(value));
 		#end
 	}
-
+	
+	private static function init()
+	{
+		if (isInit)
+			return;
+			
 #if android
 
-    private static var take_off        = JNI.createStaticMethod("com/testflightapp/lib/TestFlight", "takeOff", "(Landroid/app/ApplicationLjava/lang/String)");
-    private static var pass_checkpoint = JNI.createStaticMethod("com/testflightapp/lib/TestFlight", "passCheckpoint", "(Ljava/lang/String)");
-    private static var remote_log      = JNI.createStaticMethod("com/testflightapp/lib/TestFlight", "log", "(Ljava/lang/String)");
+		// Helper
+		get_app 				= JNI.createStaticMethod("TFHelper", "getApp", "(Lorg/haxe/nme/GameActivity;)Landroid/app/Application;");
+		get_activity			= JNI.createStaticMethod ("org.haxe.nme.GameActivity", "getInstance", "()Lorg/haxe/nme/GameActivity;");
+		
+		take_off				= JNI.createStaticMethod("com/testflightapp/lib/TestFlight", "takeOff", "(Landroid/app/Application;Ljava/lang/String;)V");
+		pass_checkpoint 	= JNI.createStaticMethod("com/testflightapp/lib/TestFlight", "passCheckpoint", "(Ljava/lang/String;)V");
+		remote_log			= JNI.createStaticMethod("com/testflightapp/lib/TestFlight", "log", "(Ljava/lang/String;)V");
 
 #else
 
-    private static var take_off        = Lib.load("testflight", "testflight_take_off", 1);
-    private static var submit_feedback = Lib.load("testflight", "testflight_submit_feedback", 1);
-    private static var pass_checkpoint = Lib.load("testflight", "testflight_pass_checkpoint", 1);
-    private static var custom_info     = Lib.load("testflight", "testflight_custom_info", 2);
-    private static var remote_log      = Lib.load("testflight", "testflight_remote_log", 1);
+		take_off        		= Lib.load("testflight", "testflight_take_off", 1);
+		submit_feedback	= Lib.load("testflight", "testflight_submit_feedback", 1);
+		pass_checkpoint	= Lib.load("testflight", "testflight_pass_checkpoint", 1);
+		custom_info			= Lib.load("testflight", "testflight_custom_info", 2);
+		remote_log			= Lib.load("testflight", "testflight_remote_log", 1);
 
 #end
+	}
+	
+	private static var isInit:Bool;
+	
+	private static var take_off:Dynamic;
+    private static var submit_feedback:Dynamic;
+    private static var pass_checkpoint:Dynamic;
+	
+	// iOS only
+    private static var custom_info:Dynamic;
+    private static var remote_log:Dynamic;
+	
+	// Android helpers
+	private static var get_app:Dynamic;
+	private static var get_activity:Dynamic;
+
 }
