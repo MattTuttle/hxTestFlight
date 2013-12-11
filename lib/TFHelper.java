@@ -3,7 +3,7 @@ import android.app.Activity;
 import android.content.ContextWrapper;
 import android.os.Bundle;
 
-import org.haxe.nme.GameActivity;
+import org.haxe.lime.GameActivity;
 
 import com.testflightapp.lib.TestFlight;
 

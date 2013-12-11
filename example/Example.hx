@@ -13,7 +13,7 @@ class Example extends flash.display.Sprite
 
 	private function init()
 	{
-		TestFlight.takeOff("8fe0a99f-7101-4d81-868a-b90683d20468");
+		TestFlight.takeOff("YOUR-API-KEY");
 		TestFlight.passCheckpoint("check1");
 		TestFlight.remoteLog("Hello world");
 #if !android

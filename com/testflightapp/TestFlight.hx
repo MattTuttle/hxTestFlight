@@ -54,8 +54,8 @@ class TestFlight
 #if android
 
 		// Helper
-		get_app 				= JNI.createStaticMethod("TFHelper", "getApp", "(Lorg/haxe/nme/GameActivity;)Landroid/app/Application;");
-		get_activity			= JNI.createStaticMethod ("org.haxe.nme.GameActivity", "getInstance", "()Lorg/haxe/nme/GameActivity;");
+		get_app 				= JNI.createStaticMethod("TFHelper", "getApp", "(Lorg/haxe/lime/GameActivity;)Landroid/app/Application;");
+		get_activity			= JNI.createStaticMethod ("org.haxe.lime.GameActivity", "getInstance", "()Lorg/haxe/lime/GameActivity;");
 		
 		take_off				= JNI.createStaticMethod("com/testflightapp/lib/TestFlight", "takeOff", "(Landroid/app/Application;Ljava/lang/String;)V");
 		pass_checkpoint 	= JNI.createStaticMethod("com/testflightapp/lib/TestFlight", "passCheckpoint", "(Ljava/lang/String;)V");
