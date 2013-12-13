@@ -1,4 +1,4 @@
-TestFlight SDK for NME
+TestFlight SDK for OpenFL
 ======================
 
 TestFlight comes with a set of SDK calls that can add helpful feedback from your app. Checkpoints are especially useful for games.

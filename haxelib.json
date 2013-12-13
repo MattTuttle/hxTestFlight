@@ -4,7 +4,10 @@
 	"license": "MIT",
 	"tags": ["ios", "android"],
 	"description": "TestFlight SDK for iOS and Android",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"releasenote": "See CHANGELOG.md",
-	"contributors": ["heardtheword"]
+	"contributors": ["heardtheword"],
+	"dependencies": {
+                "openfl": ""
+        }
 }
